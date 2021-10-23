@@ -44,7 +44,7 @@ class PN:
         sp = np.sin(np.deg2rad(self.pursuer.psi))
         Cwp = np.array([[cp,sp],[-sp,cp]])
 
-        xr = np.array([[self.target.x-self.pursuer.x],[self.target.y-self.pursuer.yd]])
+        xr = np.array([[self.target.x-self.pursuer.x],[self.target.y-self.pursuer.y]])
         xrd = np.array([[self.target.xd-self.pursuer.xd],[self.target.yd-self.pursuer.yd]])
 
         xrp = [
@@ -57,7 +57,7 @@ class PN:
             ]
 
         lam = np.arctan2(xrp[1][0],xrp[0][0])
-        lamd = (xrdp[1]*xrp[0][0]-xrdp[0]*xrp[1][0])/(np.square(xrp[0][0])/np.square(np.cos(lam)))
+        lamd = (xrdp[1]*xrp[0][0]-xrdp[0]*xrp[1][0])/(np.square(xrp[0][0])/np.square(np.cos(lam))) #derivative of atan(y/x)
 
         nL = self.N*lamd*Vc
 
